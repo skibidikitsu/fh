@@ -41,3 +41,5 @@ bloom.Intensity = 0.2
 bloom.Threshold = 0.95
 bloom.Size = 22
 bloom.Parent = lighting
+
+game.Workspace.CurrentCamera.FieldOfView = 100

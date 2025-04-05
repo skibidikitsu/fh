@@ -51,4 +51,10 @@ end
 
 player.CharacterAdded:Connect(setFOV)
 
-if player.Character then setFOV() end
+task.defer(function()
+    while task.wait() do
+        if player.Character then
+            setFOV() 
+        end
+    end
+end)

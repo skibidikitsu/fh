@@ -42,4 +42,6 @@ bloom.Threshold = 0.95
 bloom.Size = 22
 bloom.Parent = lighting
 
-game.Workspace.CurrentCamera.FieldOfView = 100
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    game.Workspace.CurrentCamera.FieldOfView = 100
+end)

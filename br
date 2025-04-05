@@ -42,6 +42,13 @@ bloom.Threshold = 0.95
 bloom.Size = 22
 bloom.Parent = lighting
 
-game.Players.LocalPlayer.CharacterAdded:Connect(function()
+local player = game.Players.LocalPlayer
+
+local function setFOV()
+    repeat wait() until player.Character and game.Workspace.CurrentCamera
     game.Workspace.CurrentCamera.FieldOfView = 100
-end)
+end
+
+player.CharacterAdded:Connect(setFOV)
+
+if player.Character then setFOV() end

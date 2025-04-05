@@ -1,0 +1,43 @@
+local blur = Instance.new("BlurEffect")
+blur.Size = 0
+blur.Parent = game.Lighting
+
+local cam = workspace.CurrentCamera
+local rs = game:GetService("RunService")
+
+local lastLook = cam.CFrame.LookVector
+local currentBlur = 0
+local maxBlur = 12.5
+local triggerThreshold = 0.15
+local blurFadeSpeed = 500
+
+rs.RenderStepped:Connect(function(dt)
+	local look = cam.CFrame.LookVector
+	local angleDiff = math.acos(math.clamp(look:Dot(lastLook), -1, 1))
+
+	if angleDiff > triggerThreshold then
+		currentBlur = maxBlur
+	end
+
+	if currentBlur > 0 then
+		currentBlur = math.max(0, currentBlur - blurFadeSpeed * dt)
+	end
+
+	blur.Size = currentBlur
+	lastLook = look
+end)
+
+local lighting = game:GetService("Lighting")
+
+local cc = Instance.new("ColorCorrectionEffect")
+cc.TintColor = Color3.fromRGB(200, 255, 255)
+cc.Brightness = 0.1
+cc.Contrast = 0.05
+cc.Saturation = -0.05
+cc.Parent = lighting
+
+local bloom = Instance.new("BloomEffect")
+bloom.Intensity = 0.2
+bloom.Threshold = 0.95
+bloom.Size = 22
+bloom.Parent = lighting

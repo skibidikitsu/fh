@@ -27,21 +27,6 @@ rs.RenderStepped:Connect(function(dt)
 	lastLook = look
 end)
 
-local lighting = game:GetService("Lighting")
-
-local cc = Instance.new("ColorCorrectionEffect")
-cc.TintColor = Color3.fromRGB(200, 255, 255)
-cc.Brightness = 0.1
-cc.Contrast = 0.05
-cc.Saturation = -0.05
-cc.Parent = lighting
-
-local bloom = Instance.new("BloomEffect")
-bloom.Intensity = 0.2
-bloom.Threshold = 0.95
-bloom.Size = 22
-bloom.Parent = lighting
-
 local player = game.Players.LocalPlayer
 
 local function setFOV()
